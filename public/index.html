@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>👻 GhostPing</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- LOGIN SCREEN -->
+
+<div class="login-screen" id="loginScreen">
+
+    <div class="login-card">
+
+        <h1>👻 GhostPing</h1>
+
+        <p>Ping silently. Chat loudly.</p>
+
+        <input
+        type="text"
+        id="usernameInput"
+        placeholder="Enter your username"
+        />
+
+        <button id="joinBtn">
+            Join Chat
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MAIN APP -->
+
+<div class="app" id="app">
+
+    <!-- LEFT SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            👻 GhostPing
+        </div>
+
+        <div class="online-title">
+            ONLINE USERS
+        </div>
+
+        <div id="users"></div>
+
+    </div>
+
+    <!-- CHAT AREA -->
+
+    <div class="chat-container">
+
+        <!-- HEADER -->
+
+        <div class="chat-header">
+
+            <div class="header-left">
+
+                <div class="header-avatar">
+                    👻
+                </div>
+
+                <div>
+
+                    <h2>GhostPing Chat</h2>
+
+                    <span>Realtime Community</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CHAT -->
+
+        <div id="chat"></div>
+
+        <!-- INPUT -->
+
+        <form id="form">
+
+            <input
+            id="input"
+            autocomplete="off"
+            placeholder="Type a message..."
+            />
+
+            <button>
+                ➤
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
