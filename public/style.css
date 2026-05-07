@@ -472,3 +472,75 @@ button:active{
     }
 
 }
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 768px){
+
+    body{
+        overflow: hidden;
+    }
+
+    .chat-container{
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .top-bar{
+        padding: 14px;
+    }
+
+    .logo{
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+    }
+
+    .top-bar h1{
+        font-size: 28px;
+    }
+
+    .top-bar p{
+        font-size: 14px;
+    }
+
+    .messages{
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .message{
+        max-width: 75%;
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    .input-area{
+        padding: 12px;
+        gap: 10px;
+    }
+
+    #messageInput{
+        height: 50px;
+        font-size: 15px;
+        border-radius: 15px;
+    }
+
+    #sendBtn,
+    .image-btn{
+        width: 55px;
+        height: 55px;
+        border-radius: 16px;
+        font-size: 22px;
+    }
+
+    .online-users{
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    img.chat-image{
+        max-width: 220px;
+        border-radius: 15px;
+    }
+}
