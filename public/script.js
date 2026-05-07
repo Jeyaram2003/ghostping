@@ -18,13 +18,15 @@ const chat = document.getElementById("chat");
 
 const usersDiv = document.getElementById("users");
 
+const imageInput = document.getElementById("imageInput");
+
 /* USERNAME */
 
 let username = "";
 
 /* JOIN */
 
-joinBtn.addEventListener("click", () => {
+joinBtn.addEventListener("click",()=>{
 
     if(usernameInput.value.trim() !== ""){
 
@@ -34,15 +36,15 @@ joinBtn.addEventListener("click", () => {
 
         app.style.display = "flex";
 
-        socket.emit("user joined", username);
+        socket.emit("user joined",username);
 
     }
 
 });
 
-/* SEND */
+/* SEND TEXT */
 
-form.addEventListener("submit", (e)=>{
+form.addEventListener("submit",(e)=>{
 
     e.preventDefault();
 
@@ -56,7 +58,7 @@ form.addEventListener("submit", (e)=>{
 
         };
 
-        socket.emit("chat message", messageData);
+        socket.emit("chat message",messageData);
 
         input.value="";
 
@@ -64,9 +66,57 @@ form.addEventListener("submit", (e)=>{
 
 });
 
-/* RECEIVE */
+/* SEND IMAGE */
+
+imageInput.addEventListener("change", async ()=>{
+
+    const file = imageInput.files[0];
+
+    if(!file) return;
+
+    const formData = new FormData();
+
+    formData.append("image",file);
+
+    const response = await fetch("/upload",{
+
+        method:"POST",
+
+        body:formData
+
+    });
+
+    const data = await response.json();
+
+    socket.emit("image message",{
+
+        username:username,
+
+        imageUrl:data.imageUrl
+
+    });
+
+});
+
+/* RECEIVE TEXT */
 
 socket.on("chat message",(data)=>{
+
+    addMessage(data,false);
+
+});
+
+/* RECEIVE IMAGE */
+
+socket.on("image message",(data)=>{
+
+    addMessage(data,true);
+
+});
+
+/* ADD MESSAGE */
+
+function addMessage(data,isImage){
 
     const div = document.createElement("div");
 
@@ -82,23 +132,42 @@ socket.on("chat message",(data)=>{
 
     }
 
-    div.innerHTML = `
+    if(isImage){
 
-        <div class="username">
-            ${data.username}
-        </div>
+        div.innerHTML = `
 
-        <div class="message-text">
-            ${data.message}
-        </div>
+            <div class="username">
+                ${data.username}
+            </div>
 
-    `;
+            <img
+            src="${data.imageUrl}"
+            class="chat-image"
+            />
+
+        `;
+
+    }else{
+
+        div.innerHTML = `
+
+            <div class="username">
+                ${data.username}
+            </div>
+
+            <div class="message-text">
+                ${data.message}
+            </div>
+
+        `;
+
+    }
 
     chat.appendChild(div);
 
     chat.scrollTop = chat.scrollHeight;
 
-});
+}
 
 /* ONLINE USERS */
 

@@ -411,6 +411,52 @@ button:active{
 
 }
 
+.image-btn{
+
+    width:60px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-right:10px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,0.08);
+
+    cursor:pointer;
+
+    font-size:24px;
+
+    transition:0.3s;
+
+}
+
+.image-btn:hover{
+
+    background:rgba(255,255,255,0.15);
+
+    transform:scale(1.05);
+
+}
+
+/* IMAGE MESSAGE */
+
+.chat-image{
+
+    width:250px;
+
+    max-width:100%;
+
+    border-radius:15px;
+
+    margin-top:5px;
+
+}
+
 /* ANIMATION */
 
 @keyframes fadeIn{

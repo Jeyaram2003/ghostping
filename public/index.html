@@ -91,13 +91,23 @@
 
         <!-- INPUT -->
 
-        <form id="form">
+        <form id="form" enctype="multipart/form-data">
 
             <input
             id="input"
             autocomplete="off"
             placeholder="Type a message..."
             />
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/*"
+                hidden
+            />
+
+<label for="imageInput" class="image-btn">
+📷
+</label>
 
             <button>
                 ➤
